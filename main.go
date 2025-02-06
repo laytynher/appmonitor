@@ -7,24 +7,21 @@ import (
 )
 
 func main() {
-    // Diretório de aplicativos
-    appsDir := "/Applications"
+    caminho := "/Applications"
     
-    files, err := ioutil.ReadDir(appsDir)
+    arquivos, err := ioutil.ReadDir(caminho)
     if err != nil {
         log.Fatal(err)
     }
     
-    // Lista de aplicativos permitidos
-    allowedApps := map[string]bool{
+    permitidos := map[string]bool{
         "Safari.app": true,
         "Pages.app":  true,
     }
     
-    // Verifica se os aplicativos instalados são permitidos
-    for _, f := range files {
-        if f.IsDir() && !allowedApps[f.Name()] {
-            fmt.Printf("Aplicativo não permitido detectado: %s\n", f.Name())
+    for _, arquivo := range arquivos {
+        if arquivo.IsDir() && !permitidos[arquivo.Name()] {
+            fmt.Printf("Encontrado: %s\n", arquivo.Name())
         }
     }
 }
